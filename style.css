@@ -8,11 +8,20 @@ body {
 body {
   font-family: "Space Grotesk", sans-serif;
   margin: 0;
-  background: #aaa;
+  background: #fff;
   color: #333;
   display: flex;
   align-items: center;
   justify-content: center;
+}
+
+h3 {
+  color: #ffffff;
+  text-align: center;
+  font-weight: 900;
+  font-size: 32px;
+  margin: 0;
+  padding: 20px;
 }
 
 .main-calculator {
@@ -28,7 +37,7 @@ body {
   width: 335px;
   height: 120px;
   background-color: #edeed1;
-  margin: 90px auto 0px;
+  margin: 0px auto 0px;
 }
 
 .display-button {
@@ -40,9 +49,11 @@ body {
 }
 
 button {
+  font-family: "Space Grotesk";
   background-color: #af8cde;
   color: #000000;
   border: 1px solid #707070;
+  cursor: pointer;
   margin: 0;
   width: 83.75px;
   height: 72px;
