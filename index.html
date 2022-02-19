@@ -3,36 +3,40 @@
   <head>
     <meta charset="UTF-8" />
     <title>Calculator</title>
-    <link rel="stylesheet" href="style2.css" />
+    <link rel="stylesheet" href="style.css" />
     <script src="script.js" defer></script>
   </head>
   <body>
     <div class="main-calculator">
       <h3>Calculator</h3>
-      <div class="display"></div>
+      <div class="display">
+        <div class="previous-display"></div>
+        <div class="current-display"></div>
+      </div>
       <div class="display-button">
-        <button class="clear" class="white">clear</button>
-        <button class="operator-btn" id="/" class="white">&divide;</button>
+        <button class="clear white">clear</button>
+        <button class="operator-btn white" id="^">^</button>
+        <button class="operator-btn white" id="/">&divide;</button>
 
         <button class="number-btn">7</button>
         <button class="number-btn">8</button>
         <button class="number-btn">9</button>
-        <button class="operator-btn" id="x" class="white">&times;</button>
+        <button class="operator-btn white" id="x">&times;</button>
 
         <button class="number-btn">4</button>
         <button class="number-btn">5</button>
         <button class="number-btn">6</button>
-        <button class="operator-btn" id="-" class="white">-</button>
+        <button class="operator-btn  white" id="-">-</button>
 
         <button class="number-btn">1</button>
         <button class="number-btn">2</button>
         <button class="number-btn">3</button>
-        <button class="operator-btn" id="+" class="white">+</button>
+        <button class="operator-btn white" id="+">+</button>
 
         <button class="number-btn">.</button>
         <button class="number-btn">0</button>
         <button class="delete-btn">del</button>
-        <button class="operator-btn" id="=" class="white">=</button>
+        <button class="operator-btn white" id="=">=</button>
       </div>
     </div>
   </body>

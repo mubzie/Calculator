@@ -1,5 +1,6 @@
-const display = document.querySelector('.display');
-const buttons = document.querySelectorAll('.number-btn');
+const previousDisplay = document.querySelector('.previous-display');
+const currentDisplay = document.querySelector('.current-display');
+const numbers = document.querySelectorAll('.number-btn');
 const operators = document.querySelectorAll('.operator-btn');
 const clearBtn = document.querySelector('.clear');
 const deleteBtn = document.querySelector('.delete-btn');
@@ -7,6 +8,7 @@ const deleteBtn = document.querySelector('.delete-btn');
 let firstNum = "";
 let secondNum = "";
 let operator = "";
+let currentOperator = "";
 let result = 0;
 
 function add(firstNum, secondNum) {
@@ -25,6 +27,10 @@ function divide(firstNum, secondNum) {
     return firstNum / secondNum;
 }
 
+function power(firstNum, secondNum) {
+    return firstNum ** secondNum;
+}
+
 function operate(firstNum, secondNum, operator) {
     switch(operator) {
     case '+':
@@ -35,15 +41,16 @@ function operate(firstNum, secondNum, operator) {
         return multiply(firstNum, secondNum);
     case '/':
         return divide(firstNum, secondNum);
+    case '^':
+        return power(firstNum, secondNum);
     }
 }
 
-buttons.forEach( button => {
-    button.addEventListener('click', (e) => {
+numbers.forEach( number => {
+    number.addEventListener('click', (e) => {
 
-        document.querySelector('.display').textContent += button.textContent
+        previousDisplay.textContent += number.textContent
          
-
         if(operator === "") {
       firstNum += e.target.innerText;
       console.log(firstNum) //
@@ -54,30 +61,66 @@ buttons.forEach( button => {
     })
 })
 
-
 operators.forEach(operatorsBtn => {
        operatorsBtn.addEventListener('click', (e) => {
-
-    //    document.querySelector('.display').textContent += operatorsBtn.textContent
-       display.textContent += operatorsBtn.textContent
        
+       previousDisplay.textContent = firstNum + operatorsBtn.textContent;     
+
+    //    automatically assign 0 to firstNum when user press operator key first
+       if(!firstNum) {
+           firstNum = 0;
+          let defaultNum = firstNum + operatorsBtn.textContent
+          previousDisplay.textContent = defaultNum;
+          console.log(firstNum)
+       } 
+
        if(e.target.id !== "=") {
+    
+       currentOperator = operatorsBtn.textContent
        operator = e.target.id;
        console.log(operator)
-
+       
        } else {
-
-        result = operate(parseInt(firstNum), parseInt(secondNum), operator)
-       console.log(result) 
+      
+        // previousDisplay.textContent = `${firstNum}${currentOperator}${secondNum} ${operatorsBtn.textContent }`
+        previousDisplay.textContent = `${firstNum}${currentOperator}${secondNum}`
+        currentDisplay.textContent = result = operate(parseInt(firstNum), parseInt(secondNum), operator)
+        
+        console.log(result) 
 
        }
     })
 })
 
 clearBtn.addEventListener('click', () => {
-    firstNum = 0;
-    secondNum = 0;
-    display.textContent = "";
+    firstNum = "";
+    secondNum = "";
+    previousDisplay.textContent = "";
+    currentDisplay.textContent = "";
     operator = "";
 })
 
+// deleteBtn.addEventListener('click', () => {
+// if(!operator) {
+//     firstNum = previousDisplay.textContent.slice(0, -1)
+//     previousDisplay.textContent = firstNum;
+
+// } else {
+// secondNum = previousDisplay.textContent.slice(0, -1)
+//         previousDisplay.textContent = secondNum
+
+// }
+    
+// })
+
+// deleteBtn.addEventListener('click', () => {
+//     if(!operator) {
+//         firstNum = previousDisplay.textContent.slice(0, -1)
+//         previousDisplay.textContent = firstNum;
+    
+//     } else {
+//     secondNum = previousDisplay.textContent.slice(0, -1)
+//             // previousDisplay.textContent = secondNum
+//     }
+//        previousDisplay.textContent = previousDisplay.textContent.toString().slice(0, -1) 
+//     })
