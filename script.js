@@ -32,6 +32,10 @@ function power(firstNum, secondNum) {
     return firstNum ** secondNum;
 }
 
+function modulus(firstNum, secondNum) {
+    return firstNum % secondNum;
+}
+
 function operate(firstNum, secondNum, operator) {
     switch(operator) {
     case '+':
@@ -48,6 +52,8 @@ function operate(firstNum, secondNum, operator) {
         }
     case '^':
         return power(firstNum, secondNum);
+    case '%':
+            return modulus(firstNum, secondNum);    
     }
 }
 
@@ -58,8 +64,7 @@ numbers.forEach( number => {
         //     return;
         // } 
 
-        previousDisplay.textContent += number.textContent
-        // currentDisplay.textContent += number.textContent
+        currentDisplay.textContent += number.textContent
 
         if(operator === "") {
       firstNum += e.target.innerText;
@@ -75,7 +80,8 @@ numbers.forEach( number => {
 operators.forEach(operatorsBtn => {
        operatorsBtn.addEventListener('click', (e) => {
        
-       previousDisplay.textContent = firstNum + operatorsBtn.textContent;     
+       previousDisplay.textContent = firstNum + operatorsBtn.textContent; 
+       currentDisplay.textContent = secondNum    
 
     //    automatically assign 0 to firstNum when user press operator key first
        if(!firstNum) {
@@ -93,7 +99,7 @@ operators.forEach(operatorsBtn => {
        
        } else {
       
-        previousDisplay.textContent = `${firstNum}${currentOperator}${secondNum}`
+        previousDisplay.textContent = `${firstNum}${currentOperator}${secondNum} =`
         currentDisplay.textContent = result = operate(parseFloat(firstNum), parseFloat(secondNum), operator)
         console.log(result) 
 
@@ -117,13 +123,14 @@ clearBtn.addEventListener('click', () => {
 deleteBtn.addEventListener('click', () => {
     if(operator === "") {
 
-        previousDisplay.textContent = previousDisplay.textContent.slice(0, -1);
-        firstNum = previousDisplay.textContent;
+        currentDisplay.textContent = currentDisplay.textContent.slice(0, -1);
+        firstNum = currentDisplay.textContent;
 
     } else {
 
-   return;
+        currentDisplay.textContent = currentDisplay.textContent.slice(0, -1);
+        secondNum = currentDisplay.textContent;
 
     }
   
-    })
+})
