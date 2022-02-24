@@ -9,7 +9,8 @@ let firstNum = "";
 let secondNum = "";
 let operator = "";
 let currentOperator = "";
-let result = 0;
+let result;
+let defaultFigure = 0;
 
 function add(firstNum, secondNum) {
     return firstNum + secondNum;
@@ -40,7 +41,11 @@ function operate(firstNum, secondNum, operator) {
     case 'x':
         return multiply(firstNum, secondNum);
     case '/':
+        if(secondNum === 0)  {
+           return currentDisplay.textContent = "not you trying to divide by 0"
+        } else {
         return divide(firstNum, secondNum);
+        }
     case '^':
         return power(firstNum, secondNum);
     }
@@ -49,15 +54,21 @@ function operate(firstNum, secondNum, operator) {
 numbers.forEach( number => {
     number.addEventListener('click', (e) => {
 
+        // if(firstNum && previousDisplay.textContent.includes(".")) {
+        //     return;
+        // } 
+
         previousDisplay.textContent += number.textContent
-         
+        // currentDisplay.textContent += number.textContent
+
         if(operator === "") {
       firstNum += e.target.innerText;
-      console.log(firstNum) //
+      console.log(firstNum) 
         } else {
             secondNum += e.target.innerText
             console.log(secondNum)
         }
+
     })
 })
 
@@ -68,25 +79,28 @@ operators.forEach(operatorsBtn => {
 
     //    automatically assign 0 to firstNum when user press operator key first
        if(!firstNum) {
-           firstNum = 0;
+          firstNum = defaultFigure;
           let defaultNum = firstNum + operatorsBtn.textContent
           previousDisplay.textContent = defaultNum;
-          console.log(firstNum)
+          console.log(defaultNum)
        } 
 
        if(e.target.id !== "=") {
-    
+
        currentOperator = operatorsBtn.textContent
        operator = e.target.id;
        console.log(operator)
        
        } else {
       
-        // previousDisplay.textContent = `${firstNum}${currentOperator}${secondNum} ${operatorsBtn.textContent }`
         previousDisplay.textContent = `${firstNum}${currentOperator}${secondNum}`
-        currentDisplay.textContent = result = operate(parseInt(firstNum), parseInt(secondNum), operator)
-        
+        currentDisplay.textContent = result = operate(parseFloat(firstNum), parseFloat(secondNum), operator)
         console.log(result) 
+
+        if(result) {
+            firstNum = result;
+            secondNum = "";
+        }
 
        }
     })
@@ -100,27 +114,16 @@ clearBtn.addEventListener('click', () => {
     operator = "";
 })
 
-// deleteBtn.addEventListener('click', () => {
-// if(!operator) {
-//     firstNum = previousDisplay.textContent.slice(0, -1)
-//     previousDisplay.textContent = firstNum;
+deleteBtn.addEventListener('click', () => {
+    if(operator === "") {
 
-// } else {
-// secondNum = previousDisplay.textContent.slice(0, -1)
-//         previousDisplay.textContent = secondNum
+        previousDisplay.textContent = previousDisplay.textContent.slice(0, -1);
+        firstNum = previousDisplay.textContent;
 
-// }
-    
-// })
+    } else {
 
-// deleteBtn.addEventListener('click', () => {
-//     if(!operator) {
-//         firstNum = previousDisplay.textContent.slice(0, -1)
-//         previousDisplay.textContent = firstNum;
-    
-//     } else {
-//     secondNum = previousDisplay.textContent.slice(0, -1)
-//             // previousDisplay.textContent = secondNum
-//     }
-//        previousDisplay.textContent = previousDisplay.textContent.toString().slice(0, -1) 
-//     })
+   return;
+
+    }
+  
+    })
