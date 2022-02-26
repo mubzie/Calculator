@@ -11,6 +11,7 @@ let operator = "";
 let currentOperator = "";
 let result;
 let defaultFigure = 0;
+let decimalCount = 0;
 
 function add(firstNum, secondNum) {
     return firstNum + secondNum;
@@ -60,11 +61,16 @@ function operate(firstNum, secondNum, operator) {
 
 numbers.forEach( number => {
     number.addEventListener('click', (e) => {
+        
+// // For  the decimal increment decimal counter
+     if (number.value === ".") {
+      decimalCount++;
+      }
 
-        // if(firstNum && previousDisplay.textContent.includes(".")) {
-        //     return;
-        // } 
-
+//   // For more than one decimal don't do anything. Return
+      if (number.value === "." && decimalCount > 1) {
+      return;
+      }
         currentDisplay.textContent += number.textContent
 
         if(operator === "") {
@@ -91,6 +97,8 @@ operators.forEach(operatorsBtn => {
           previousDisplay.textContent = defaultNum;
           console.log(defaultNum)
        } 
+       
+       decimalCount = 0;
 
        if(e.target.id !== "=") {
 
@@ -119,6 +127,7 @@ clearBtn.addEventListener('click', () => {
     previousDisplay.textContent = "";
     currentDisplay.textContent = "";
     operator = "";
+    decimalCount = 0;
 })
 
 deleteBtn.addEventListener('click', () => {
