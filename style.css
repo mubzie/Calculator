@@ -52,7 +52,7 @@ h3 {
 .current-display {
   box-sizing: border-box;
   text-align: end;
-  font-size: 32px;
+  font-size: 30px;
   font-weight: 900;
   padding: 5px;
   width: 335px;
@@ -72,7 +72,7 @@ button {
   font-family: "Space Grotesk";
   background-color: #af8cde;
   color: #000000;
-  border: 1px solid #707070;
+  border: 1px solid #5900cf;
   cursor: pointer;
   margin: 0;
   width: 83.75px;
@@ -81,11 +81,18 @@ button {
   font-weight: 900;
 }
 
+button:hover {
+  background-color: #edeed1;
+}
+
 .delete-btn {
   background-color: #f12424;
-  color: #fff;
 }
 
 .white {
   background-color: white;
+}
+
+.color {
+  background-color: rgb(221, 71, 184);
 }

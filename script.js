@@ -46,7 +46,8 @@ function operate(firstNum, secondNum, operator) {
         return multiply(firstNum, secondNum);
     case '/':
         if(secondNum === 0)  {
-           return currentDisplay.textContent = "not you trying to divide by 0"
+           result = currentDisplay.textContent = "return ur certificate"
+            return result.setAttribute('style, color: red')
         } else {
         return divide(firstNum, secondNum);
         }
