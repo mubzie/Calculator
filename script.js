@@ -47,8 +47,7 @@ function operate(firstNum, secondNum, operator) {
         return multiply(firstNum, secondNum);
     case '/':
         if(secondNum === 0)  {
-           result = currentDisplay.textContent = "return ur certificate"
-            return result.setAttribute('style, color: red')
+        return currentDisplay.textContent = "return ur certificate"
         } else {
         return divide(firstNum, secondNum);
         }
@@ -61,25 +60,26 @@ function operate(firstNum, secondNum, operator) {
 
 numbers.forEach( number => {
     number.addEventListener('click', (e) => {
-        
-// // For  the decimal increment decimal counter
+
+     currentDisplay.textContent += number.textContent
+
+     // For  the decimal increment decimal counter
      if (number.value === ".") {
       decimalCount++;
       }
 
-//   // For more than one decimal don't do anything. Return
+      // For more than one decimal don't do anything. Return
       if (number.value === "." && decimalCount > 1) {
       return;
       }
-        currentDisplay.textContent += number.textContent
 
-        if(operator === "") {
+      if(operator === "") {
       firstNum += e.target.innerText;
       console.log(firstNum) 
-        } else {
-            secondNum += e.target.innerText
-            console.log(secondNum)
-        }
+      } else {
+      secondNum += e.target.innerText
+      console.log(secondNum)
+      }
 
     })
 })
@@ -90,7 +90,7 @@ operators.forEach(operatorsBtn => {
        previousDisplay.textContent = firstNum + operatorsBtn.textContent; 
        currentDisplay.textContent = secondNum    
 
-    //    automatically assign 0 to firstNum when user press operator key first
+    // automatically assign 0 to firstNum when user press operator key first
        if(!firstNum) {
           firstNum = defaultFigure;
           let defaultNum = firstNum + operatorsBtn.textContent

@@ -8,7 +8,7 @@ body {
 body {
   font-family: "Space Grotesk", sans-serif;
   margin: 0;
-  background: #fff;
+  background-color: #d1d0d0;
   color: #333;
   display: flex;
   align-items: center;
@@ -30,7 +30,6 @@ h3 {
   width: 375px;
   height: 570px;
   background-color: #5900cf;
-  opacity: 68%;
 }
 
 .display {
